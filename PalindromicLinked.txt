@@ -1,0 +1,53 @@
+bool compareList(LinkedListNode<int> *head,LinkedListNode<int> * reversed){
+    while(head && reversed){
+        if(head->data != reversed->data){
+            return false;
+        }
+        head = head->next;
+        reversed = reversed->next;
+    }
+    
+    return true;
+}
+LinkedListNode<int> *reverseList(LinkedListNode<int> *head){
+    LinkedListNode<int> *prev = NULL;
+    LinkedListNode<int> *curr = head;
+    while(curr){
+        LinkedListNode<int> *nxt = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nxt;
+    }
+    
+    return prev;
+}
+ 
+bool isPalindrome(LinkedListNode<int> *head) {
+  
+    LinkedListNode<int> *slow = head;
+    LinkedListNode<int> *prevslow = head;
+    LinkedListNode<int> *fast = head;
+    if(head && head->next){
+        
+        while(fast && fast->next){
+         fast = fast->next->next;
+         prevslow = slow;
+         slow = slow->next;
+    }
+    
+        
+        if(fast != NULL){
+            //list is odd length
+        //now list is ood length so eleminate mid
+            prevslow->next = NULL;
+            slow = slow->next;
+        } 
+         LinkedListNode<int> *second = slow;
+         LinkedListNode<int> *reversed = reverseList(slow);
+         return compareList(head,reversed);
+        
+    }
+   return true;
+    
+
+}

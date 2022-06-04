@@ -1,0 +1,12 @@
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
+{
+ LinkedListNode<int> *prev  = NULL;
+    LinkedListNode<int> *curr = head;
+    while(curr){
+        LinkedListNode<int> *nxt = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nxt;
+    }
+    return prev;
+}
