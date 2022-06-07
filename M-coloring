@@ -32,6 +32,8 @@ bool is_safe(vector<vector<int>> &mat,vector<int> &color){
 
 
 this will not give tle
+T.C o(v^m) m is number of colors 
+s.c O(v) number of nodes
 bool isSafe(vector<vector<int>> &mat,vector<int> &color,int node,int col,int v){
     for(int k=0;k<v;k++)
     {
