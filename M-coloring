@@ -1,0 +1,77 @@
+//this will give tle
+bool is_safe(vector<vector<int>> &mat,vector<int> &color){
+//     for(int i=0;i<mat.size();i++){
+//         for(int j =0;j<mat[0].size();j++){
+//             if(mat[i][j] && color[i] == color[j]){
+//                 return false;
+//             }
+//         }
+//     }
+//     return true;
+// }
+// bool graphColoring(vector<vector<int>> &mat,int m,int i,vector<int> &color,int v){
+//     if(i == v){
+//         if(is_safe(mat,color)){
+//             return true;
+//         }
+//         return false;
+//     }
+    
+//     for(int j=1;j<=m;j++){
+//         color[i] = j;
+//         if(graphColoring(mat,m,i+1,color,v)){
+//             return true;
+//         }
+//         color[i] = 0;
+//     }
+//     return false;
+// }
+
+
+
+
+
+this will not give tle
+bool isSafe(vector<vector<int>> &mat,vector<int> &color,int node,int col,int v){
+    for(int k=0;k<v;k++)
+    {
+       if(k!=node && mat[node][k] && color[k] == col){
+           return false;
+       } 
+    }
+    
+    return true;
+
+}
+
+bool graphColoring(vector<vector<int>> &mat,int m,int node,vector<int> &color,int v){
+  if(node == v){
+      return true;
+  }
+    
+    for(int i=1;i<=m;i++){
+        if(isSafe(mat,color,node,i,v)){
+            color[node] = i;
+            if(graphColoring(mat,m,node+1,color,v)){
+                return true;
+            }
+            color[node] = 0;
+     
+        }
+    }
+    
+    return false;
+
+}
+
+
+string graphColoring(vector<vector<int>> &mat, int m) {
+    int v = mat.size();
+    vector<int> color(v,0);
+    if(graphColoring(mat,m,0,color,v)){
+        return "YES";
+    }else{
+        return "NO";
+    }
+}
+
