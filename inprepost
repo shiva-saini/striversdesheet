@@ -1,0 +1,49 @@
+inorder
+void find(TreeNode *root,vector<int> &ans){
+    if(!root) return ;
+    find(root->left,ans);
+    ans.push_back(root->data);
+    find(root->right,ans);
+    return;
+}
+vector<int> getInOrderTraversal(TreeNode *root)
+{
+   vector<int> ans;
+   find(root,ans);
+    return ans;
+}
+
+preorder
+
+void find(TreeNode *root,vector<int> &ans){
+    if(!root) return ;
+    ans.push_back(root->data);
+    find(root->left,ans);
+    
+    find(root->right,ans);
+    return;
+}
+vector<int> getPreOrderTraversal(TreeNode *root)
+{  vector<int> ans;
+   find(root,ans);
+    return ans;
+}
+
+
+post order
+
+void find(TreeNode *root,vector<int> &ans){
+    if(!root) return ;
+  
+    find(root->left,ans);
+    
+    find(root->right,ans);
+      ans.push_back(root->data);
+    return;
+}
+vector<int> getPostOrderTraversal(TreeNode *root)
+{
+     vector<int> ans;
+   find(root,ans);
+    return ans;
+}
